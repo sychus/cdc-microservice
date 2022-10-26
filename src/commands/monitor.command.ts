@@ -55,6 +55,6 @@ export class MonitorRunner extends CommandRunner {
 
   errorHandler = (options) => {
     // need to handle some errors
-    console.log('error en el llamado a la funcion: ', options);
+    console.error('Error: ', options);
   };
 }
