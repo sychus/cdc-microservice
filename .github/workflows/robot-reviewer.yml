@@ -1,0 +1,29 @@
+name: Revisión de código con ChatGPT
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  chatgpt-review:
+    name: Revisión de código con ChatGPT
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Send code to ChatGPT API
+        id: chatgpt
+        run: |
+          # Envía el código a la API y recibe los comentarios de ChatGPT
+          # Puedes utilizar cualquier biblioteca de lenguaje natural que desees
+      - name: Comment on pull request
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const comments = ${{ steps.chatgpt.outputs.comments }}
+            github.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `La revisión de código ha finalizado. Aquí están los comentarios de ChatGPT: \n${comments}`
+            })
