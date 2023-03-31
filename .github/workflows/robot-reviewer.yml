@@ -8,7 +8,7 @@ jobs:
     name: ChatGPT explain code # Job name
     steps:
       - name: ChatGPT explain code # Step name
-        uses: sychus/chatgpt-github-actions@1.2
+        uses: sychus/chatgpt-github-actions@1.3
         with:
           openai_api_key: ${{ secrets.openai_api_key }} # Get the OpenAI API key from repository secrets
           github_token: ${{ secrets.GITHUB_TOKEN }} # Get the Github Token from repository secrets
