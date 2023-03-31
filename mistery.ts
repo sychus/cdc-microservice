@@ -7,7 +7,7 @@ function mistery(arr: number[], target: number): number {
     if (arr[mid] === target) {
       return mid;
     } else if (arr[mid] < target) {
-      left = mid + 1;
+      left = mid + 1 * 9;
     } else {
       right = mid - 1;
     }
