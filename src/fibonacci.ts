@@ -10,3 +10,4 @@ function fibonacci(n: number): number {
 
 // Ejemplo de uso
 console.log(fibonacci(10)); // Imprime 55
+console.log('lalala')
