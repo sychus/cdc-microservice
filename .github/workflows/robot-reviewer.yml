@@ -1,29 +1,18 @@
-name: Revisión de código con ChatGPT
-
 on:
-  pull_request:
-    types: [opened, synchronize]
+  pull_request: # Trigger the workflow on pull request events
+    types: [opened, synchronize] # Run the workflow when pull request is opened or synchronized
 
 jobs:
-  chatgpt-review:
-    name: Revisión de código con ChatGPT
-    runs-on: ubuntu-latest
+  hello_world_job: # Define the job
+    runs-on: ubuntu-latest # Specify the runner to run the job on
+    name: ChatGPT explain code # Job name
     steps:
-      - uses: actions/checkout@v2
-      - name: Send code to ChatGPT API
-        id: chatgpt
-        run: |
-          # Envía el código a la API y recibe los comentarios de ChatGPT
-          # Puedes utilizar cualquier biblioteca de lenguaje natural que desees
-      - name: Comment on pull request
-        uses: actions/github-script@v4
+      - name: ChatGPT explain code # Step name
+        uses: cirolini/chatgpt-github-actions@v1.2 # Use the ChatGPT Github Actions from cirolini repository
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const comments = ${{ steps.chatgpt.outputs.comments }}
-            github.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `La revisión de código ha finalizado. Aquí están los comentarios de ChatGPT: \n${comments}`
-            })
+          openai_api_key: ${{ secrets.openai_api_key }} # Get the OpenAI API key from repository secrets
+          github_token: ${{ secrets.GITHUB_TOKEN }} # Get the Github Token from repository secrets
+          github_pr_id: ${{ github.event.number }} # Get the Github Pull Request ID from the Github event
+          openai_engine: "text-davinci-002" # Optional: specify the OpenAI engine to use. Default is "text-davinci-002"
+          openai_temperature: 0.5 # Optional: specify the sampling temperature for OpenAI. Default is 0.5
+          openai_max_tokens: 2048 # Optional: specify the maximum number of tokens to generate in OpenAI completion. Default is 2048
