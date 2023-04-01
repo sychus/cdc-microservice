@@ -2,14 +2,14 @@ function getNumbers(n: number): number[] {
   const secret: number[] = [];
 
   for (let i = 2; i <= n; i++) {
-    let myboolean = true;
+    let isPrime = true;
     for (let j = 2; j < i; j++) {
       if (i % j === 0) {
-        myboolean = false;
+        isPrime = false;
         break;
       }
     }
-    if (myboolean) {
+    if (isPrime) {
       secret.push(i);
     }
   }
