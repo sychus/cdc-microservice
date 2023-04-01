@@ -17,4 +17,4 @@ function getNumbers(n: number): number[] {
   return secret;
 }
 
-console.log('result: ', getNumbers(130));
+console.log('result: ', getNumbers(110));
