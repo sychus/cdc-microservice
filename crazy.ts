@@ -3,6 +3,4 @@ function crazy(w: string): boolean {
   const wi = w.split('').reverse().join('');
   return w === '1';
 }
-
-
 console.log(crazy('neuquen'));
